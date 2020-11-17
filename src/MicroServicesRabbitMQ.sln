@@ -1,18 +1,60 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F4E9BC38-C0EF-4FA1-9900-D3982B7A306F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A6C71746-58C6-40C0-AA98-F0A5E6D16393}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Marketing", "Marketing", "{1219248D-3D4D-4F3C-9CAC-FB362232C5AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PushNotifying", "PushNotifying", "{0D2F7451-D938-4883-8B94-58FF7BE04031}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketing.Domain", "Services\Marketing\Marketing.Domain\Marketing.Domain.csproj", "{5050F870-FB67-4312-86F9-64EEC350D6F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketing.Infrastructure", "Services\Marketing\Marketing.Infrastructure\Marketing.Infrastructure.csproj", "{FF7CEEA1-202C-4736-A490-A9884813E98F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketing.Application", "Services\Marketing\Marketing.Application\Marketing.Application.csproj", "{6A59C20F-3476-409F-A907-54D9FACD0B32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketing.API", "Services\Marketing\Marketing.API\Marketing.API.csproj", "{DA40DEA9-4446-4172-AF0B-D9877CB32DB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5050F870-FB67-4312-86F9-64EEC350D6F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5050F870-FB67-4312-86F9-64EEC350D6F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5050F870-FB67-4312-86F9-64EEC350D6F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5050F870-FB67-4312-86F9-64EEC350D6F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF7CEEA1-202C-4736-A490-A9884813E98F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF7CEEA1-202C-4736-A490-A9884813E98F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF7CEEA1-202C-4736-A490-A9884813E98F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF7CEEA1-202C-4736-A490-A9884813E98F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A59C20F-3476-409F-A907-54D9FACD0B32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A59C20F-3476-409F-A907-54D9FACD0B32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A59C20F-3476-409F-A907-54D9FACD0B32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A59C20F-3476-409F-A907-54D9FACD0B32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA40DEA9-4446-4172-AF0B-D9877CB32DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA40DEA9-4446-4172-AF0B-D9877CB32DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA40DEA9-4446-4172-AF0B-D9877CB32DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA40DEA9-4446-4172-AF0B-D9877CB32DB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A6C71746-58C6-40C0-AA98-F0A5E6D16393} = {F4E9BC38-C0EF-4FA1-9900-D3982B7A306F}
+		{1219248D-3D4D-4F3C-9CAC-FB362232C5AA} = {A6C71746-58C6-40C0-AA98-F0A5E6D16393}
+		{0D2F7451-D938-4883-8B94-58FF7BE04031} = {A6C71746-58C6-40C0-AA98-F0A5E6D16393}
+		{5050F870-FB67-4312-86F9-64EEC350D6F8} = {1219248D-3D4D-4F3C-9CAC-FB362232C5AA}
+		{FF7CEEA1-202C-4736-A490-A9884813E98F} = {1219248D-3D4D-4F3C-9CAC-FB362232C5AA}
+		{6A59C20F-3476-409F-A907-54D9FACD0B32} = {1219248D-3D4D-4F3C-9CAC-FB362232C5AA}
+		{DA40DEA9-4446-4172-AF0B-D9877CB32DB5} = {1219248D-3D4D-4F3C-9CAC-FB362232C5AA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A798CED-2E49-4FE5-BE12-DCA7BA8D779E}
 	EndGlobalSection
 EndGlobal

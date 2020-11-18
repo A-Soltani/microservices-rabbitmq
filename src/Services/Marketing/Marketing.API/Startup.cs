@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Marketing.API.Infrastructure;
+using Marketing.API.Infrastructure.Configuration;
+using Marketing.API.Infrastructure.CustomExtentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +29,9 @@ namespace Marketing.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCustomSwagger()
+                .AddCustomCors()
+                .AddCustomMassTransit()
+                .AddCustomConfigurationServices(Configuration)
                 .AddControllers();
         }
 

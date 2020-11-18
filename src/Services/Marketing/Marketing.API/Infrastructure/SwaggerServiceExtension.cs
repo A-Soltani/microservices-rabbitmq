@@ -4,7 +4,7 @@ using Microsoft.OpenApi.Models;
 
 namespace Marketing.API.Infrastructure.Swagger
 {
-    public static class SwaggerServiceCollectionExtensions
+    public static class SwaggerServiceExtension
     {
 		public static IServiceCollection AddCustomSwagger(this IServiceCollection services)
         {

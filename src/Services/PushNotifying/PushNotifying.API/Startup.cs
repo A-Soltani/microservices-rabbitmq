@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MassTransit;
+using MessageContract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +26,23 @@ namespace PushNotifying.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<OrderConsumer>();
+
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.ReceiveEndpoint("order-service", e =>
+                    {
+                        e.ConfigureConsumer<OrderConsumer>(context);
+                    });
+                });
+            });
+
+            services.AddMassTransitHostedService();
+
+
             services.AddControllers();
         }
 
@@ -45,4 +64,15 @@ namespace PushNotifying.API
             });
         }
     }
+
+    public class OrderConsumer : IConsumer<PushNotification>
+    {
+        public Task Consume(ConsumeContext<PushNotification> context)
+        {
+            var message = context.Message;
+            return Task.FromResult(message);
+        }
+    }
+
+    
 }

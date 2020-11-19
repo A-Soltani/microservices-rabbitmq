@@ -2,7 +2,7 @@
 
 namespace MessageContract
 {
-    public class PushNotification
+    public class PushNotificationUploaded
     {
         public string Message { get; set; }
     }

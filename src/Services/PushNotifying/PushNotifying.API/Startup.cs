@@ -29,13 +29,13 @@ namespace PushNotifying.API
 
             services.AddMassTransit(x =>
             {
-                x.AddConsumer<OrderConsumer>();
+                x.AddConsumer<PushNotificationConsumer>();
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.ReceiveEndpoint("order-service", e =>
                     {
-                        e.ConfigureConsumer<OrderConsumer>(context);
+                        e.ConfigureConsumer<PushNotificationConsumer>(context);
                     });
                 });
             });
@@ -65,7 +65,7 @@ namespace PushNotifying.API
         }
     }
 
-    public class OrderConsumer : IConsumer<PushNotification>
+    public class PushNotificationConsumer : IConsumer<PushNotification>
     {
         public Task Consume(ConsumeContext<PushNotification> context)
         {

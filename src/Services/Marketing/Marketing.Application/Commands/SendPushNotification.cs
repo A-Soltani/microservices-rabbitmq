@@ -1,16 +1,15 @@
-﻿using System;
+﻿using MediatR;
 
-namespace MessageContract
+namespace Marketing.Application.Commands
 {
-    public class PushNotification
+    public class SendPushNotification: IRequest
     {
         public short NotificationFileType { get; set; }
-        public string DestinationNumber { get; set; }
+        public string[] MobileNumbers { get; set; }
         public string PersianBody { get; set; }
         public string PersianTitle { get; set; }
         public string EnglishBody { get; set; }
         public string EnglishTitle { get; set; }
         public int UserId { get; set; }
-
     }
 }

@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Marketing.API.Infrastructure.Swagger;
+using Marketing.Application.Commands;
+using MediatR;
 
 namespace Marketing.API
 {
@@ -32,6 +34,8 @@ namespace Marketing.API
                 .AddCustomCors()
                 .AddCustomMassTransit()
                 .AddCustomConfigurationServices(Configuration)
+                .AddInfrastructureServices()
+                .AddMediatR(typeof(SendPushNotificationHandler))
                 .AddControllers();
         }
 

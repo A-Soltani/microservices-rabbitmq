@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using MassTransit;
-using MessageContract;
-using Microsoft.AspNetCore.Http;
+using Marketing.Application.Commands;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
 
 namespace Marketing.API.Controllers
 {
@@ -13,27 +10,18 @@ namespace Marketing.API.Controllers
     [ApiController]
     public class PushNotificationController : ControllerBase
     {
-        private readonly IBusControl _busControl;
-        readonly IPublishEndpoint _publishEndpoint;
+        private readonly IMediator _mediator;
 
-
-        public PushNotificationController(IBusControl busControl, IPublishEndpoint publishEndpoint)
-        {
-            _busControl = busControl ?? throw new ArgumentNullException(nameof(busControl));
-            _publishEndpoint = publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
-        }
+        public PushNotificationController(IMediator mediator) => 
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
         [HttpPost]
-        public async Task<ActionResult> Publish([FromBody] PushNotificationUploaded pushNotification)
+        public async Task<ActionResult> SendNotification([FromBody] SendPushNotification sendPushNotification)
         {
-            //var uri = new Uri("rabbitmq://localhost/order-service");
-            //var uri = new Uri("exchange:order-service");
-
-            //var endpoint = await _busControl.GetSendEndpoint(uri);
-            //await endpoint.Send(pushNotification);
-            await _publishEndpoint.Publish(pushNotification);
+            await _mediator.Send(sendPushNotification);
             return Ok();
         }
+
     }
 
 

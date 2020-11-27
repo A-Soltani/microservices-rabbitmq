@@ -12,9 +12,9 @@ namespace PushNotifying.API.Infrastructure
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Marketing.API",
+                    Title = "PushNotifying.API",
                     Version = "v1",
-                    Description = "The Portal Marketing Service API",
+                    Description = "The Portal PushNotifying Service API",
                 });
             });
 

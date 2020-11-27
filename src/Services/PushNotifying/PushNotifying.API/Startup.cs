@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using MassTransit;
-using MessageContract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PushNotifying.API.MessageConsumers;
 
 namespace PushNotifying.API
 {
@@ -27,20 +26,7 @@ namespace PushNotifying.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddMassTransit(x =>
-            {
-                x.AddConsumer<PushNotificationConsumer>();
-
-                x.UsingRabbitMq((context, cfg) =>
-                {
-                    cfg.ReceiveEndpoint("order-service", e =>
-                    {
-                        e.ConfigureConsumer<PushNotificationConsumer>(context);
-                    });
-                });
-            });
-
-            services.AddMassTransitHostedService();
+           
 
 
             services.AddControllers();
@@ -64,15 +50,4 @@ namespace PushNotifying.API
             });
         }
     }
-
-    public class PushNotificationConsumer : IConsumer<IPushNotificationMessage>
-    {
-        public Task Consume(ConsumeContext<IPushNotificationMessage> context)
-        {
-            var message = context.Message;
-            return Task.FromResult(message);
-        }
-    }
-
-    
 }

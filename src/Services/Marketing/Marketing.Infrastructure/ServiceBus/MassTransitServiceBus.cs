@@ -1,20 +1,23 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
-using Marketing.Infrastructure.DTOs;
+using Marketing.Infrastructure.ServiceBus.Messages;
 using MassTransit;
 
 namespace Marketing.Infrastructure.ServiceBus
 {
     public class MassTransitServiceBus : IServiceBus
     {
-        private readonly IBusControl _busControl;
+        readonly IPublishEndpoint _publishEndpoint;
 
-        public MassTransitServiceBus(IBusControl busControl) 
-            => _busControl = busControl ?? throw new ArgumentNullException(nameof(busControl));
+        public MassTransitServiceBus(IPublishEndpoint publishEndpoint) => 
+            _publishEndpoint = publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
 
-        public async Task Send(Notification notification)
+
+        public async Task Send(PushNotificationMessage pushNotification)
         {
-            await _busControl.Send(notification);
+            var tokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+            await _publishEndpoint.Publish(pushNotification, tokenSource.Token);
         }
     }
 }

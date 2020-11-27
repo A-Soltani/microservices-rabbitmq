@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using Marketing.Infrastructure.DTOs;
+using Marketing.Infrastructure.ServiceBus.Messages;
 
 namespace Marketing.Infrastructure.ServiceBus
 {
     public interface IServiceBus
     {
-        Task Send(Notification notification);
+        Task Send(PushNotificationMessage pushNotification);
     }
 }

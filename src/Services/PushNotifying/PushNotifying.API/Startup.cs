@@ -65,9 +65,9 @@ namespace PushNotifying.API
         }
     }
 
-    public class PushNotificationConsumer : IConsumer<PushNotification>
+    public class PushNotificationConsumer : IConsumer<IPushNotificationMessage>
     {
-        public Task Consume(ConsumeContext<PushNotification> context)
+        public Task Consume(ConsumeContext<IPushNotificationMessage> context)
         {
             var message = context.Message;
             return Task.FromResult(message);

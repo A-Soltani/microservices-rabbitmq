@@ -6,5 +6,8 @@ namespace PushNotifying.Domain.AggregatesModel.NotificationAggregate
     {
         public EnglishNotificationMessage EnglishMessage { get; set; }
         public PersianNotificationMessage PersianMessage { get; set; }
+        public string MobileNumber { get; private set; }
+        public int SenderUserId { get; private set; }
+
     }
 }

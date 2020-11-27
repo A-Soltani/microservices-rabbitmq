@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Marketing.Infrastructure.DTOs;
 using Marketing.Infrastructure.ServiceBus;
+using Marketing.Infrastructure.ServiceBus.Messages;
 using MassTransit;
 using MediatR;
 using MessageContract;
@@ -12,28 +12,27 @@ namespace Marketing.Application.Commands
 {
     public class SendPushNotificationHandler : AsyncRequestHandler<SendPushNotification>
     {
-        readonly IPublishEndpoint _publishEndpoint;
+        private readonly IServiceBus _serviceBus;
 
-        public SendPushNotificationHandler(IPublishEndpoint publishEndpoint) 
-            => _publishEndpoint = publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
+        public SendPushNotificationHandler(IServiceBus serviceBus) => 
+            _serviceBus = serviceBus ?? throw new ArgumentNullException(nameof(serviceBus));
 
         protected override async Task Handle(SendPushNotification sendPushNotification, CancellationToken cancellationToken)
         {
             for (var i = 0; i < sendPushNotification.MobileNumbers.Count(); i++)
             {
                 var mobileNumber = sendPushNotification.MobileNumbers[i];
-                var notification = new PushNotification()
+                var pushNotification = new PushNotificationMessage()
                 {
-                    DestinationNumber = mobileNumber,
+                    NotificationType = PushNotificationType.MobileNo,
+                    MobileNumber = mobileNumber,
                     EnglishBody = sendPushNotification.EnglishBody,
                     EnglishTitle = sendPushNotification.EnglishTitle,
-                    NotificationFileType = sendPushNotification.NotificationFileType,
                     PersianBody = sendPushNotification.PersianBody,
                     PersianTitle = sendPushNotification.PersianTitle,
-                    UserId = sendPushNotification.UserId
+                    SenderUserId = sendPushNotification.UserId
                 };
-                var tokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(10));
-                await _publishEndpoint.Publish(notification, tokenSource.Token);
+                await _serviceBus.Send(pushNotification);
             }
         }
     }

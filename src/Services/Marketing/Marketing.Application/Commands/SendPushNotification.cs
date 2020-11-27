@@ -4,7 +4,6 @@ namespace Marketing.Application.Commands
 {
     public class SendPushNotification: IRequest
     {
-        public short NotificationFileType { get; set; }
         public string[] MobileNumbers { get; set; }
         public string PersianBody { get; set; }
         public string PersianTitle { get; set; }

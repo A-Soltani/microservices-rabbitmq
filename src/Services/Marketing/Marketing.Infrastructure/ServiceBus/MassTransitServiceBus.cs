@@ -14,10 +14,9 @@ namespace Marketing.Infrastructure.ServiceBus
             _publishEndpoint = publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
 
 
-        public async Task Send(PushNotificationMessage pushNotification)
+        public async Task Send(PushNotificationMessage pushNotification, CancellationToken cancellationToken)
         {
-            var tokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(10));
-            await _publishEndpoint.Publish(pushNotification, tokenSource.Token);
+            await _publishEndpoint.Publish(pushNotification, cancellationToken);
         }
     }
 }

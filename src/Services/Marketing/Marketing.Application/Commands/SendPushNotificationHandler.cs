@@ -19,7 +19,7 @@ namespace Marketing.Application.Commands
 
         protected override async Task Handle(SendPushNotification sendPushNotification, CancellationToken cancellationToken)
         {
-            for (var i = 0; i < sendPushNotification.MobileNumbers.Count(); i++)
+            for (var i = 0; i < sendPushNotification.MobileNumbers.Length; i++)
             {
                 var mobileNumber = sendPushNotification.MobileNumbers[i];
                 var pushNotification = new PushNotificationMessage()
@@ -32,7 +32,7 @@ namespace Marketing.Application.Commands
                     PersianTitle = sendPushNotification.PersianTitle,
                     SenderUserId = sendPushNotification.UserId
                 };
-                await _serviceBus.Send(pushNotification);
+                await _serviceBus.Send(pushNotification, cancellationToken);
             }
         }
     }

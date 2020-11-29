@@ -4,13 +4,21 @@ namespace MessageContract
 {
     public enum PushNotificationType
     {
-        [Display(Name = "فایل ارسالی دارای ستون شماره موبایل است.")]
+        /// <summary>
+        /// فایل ارسالی دارای ستون شماره موبایل است.
+        /// </summary>
         MobileNo = 1,
-        [Display(Name = "فایل ارسالی دارای ستون کد شناسه شماره موبایل است.")]
+        /// <summary>
+        /// فایل ارسالی دارای ستون کد شناسه شماره موبایل است.
+        /// </summary>
         MobileId = 2,
-        [Display(Name = "فایل ارسالی دارای ستون کد شناسه موبایل اپلیکیشن است.")]
+        /// <summary>
+        /// فایل ارسالی دارای ستون کد شناسه موبایل اپلیکیشن است
+        /// </summary>
         MobileAppId = 3,
-        [Display(Name = "ارسال به تمام مشترکین")]
+        /// <summary>
+        /// ارسال به تمام مشترکین
+        /// </summary>
         SendAllSubscriber = 9
     }
 }

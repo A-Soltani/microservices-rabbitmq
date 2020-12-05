@@ -12,11 +12,11 @@ namespace Marketing.API.Controllers
     {
         private readonly IMediator _mediator;
 
-        public PushNotificationController(IMediator mediator) => 
+        public PushNotificationController(IMediator mediator) =>
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
         [HttpPost]
-        public async Task<ActionResult> SendNotification([FromBody] SendPushNotification sendPushNotification)
+        public async Task<ActionResult> Send([FromBody] SendPushNotification sendPushNotification)
         {
             await _mediator.Send(sendPushNotification);
             return Ok();

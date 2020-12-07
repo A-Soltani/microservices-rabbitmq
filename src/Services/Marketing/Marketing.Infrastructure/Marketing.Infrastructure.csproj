@@ -14,4 +14,8 @@
     <ProjectReference Include="..\..\MessageContract\MessageContract.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\Dapper\" />
+  </ItemGroup>
+
 </Project>
